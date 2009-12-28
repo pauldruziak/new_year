@@ -5,6 +5,7 @@ require 'spec'
 require 'spec/autorun'
 require 'spec/interop/test'
 require 'dm-core'
+require 'faker'
  
 # set test environment
 Sinatra::Base.set :environment, :test

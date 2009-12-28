@@ -1,7 +1,10 @@
 require "#{File.dirname(__FILE__)}/spec_helper"
  
 describe "Gift" do
-  emails = ["A", "B", "C", "D", "E", "F"]
+  emails = []
+  100.times do 
+    emails << Faker::Internet.email
+  end
 
   before(:each) do
     @gift = Gift.new(emails)
@@ -29,12 +32,26 @@ describe "Gift" do
     end
 
     it "should return #{emails.count} items" do
-      emails = ["A", "B", "C", "D", "E", "F"]
       @result.count.should be_eql(emails.count)
     end
 
     it "should return hash" do
       @result.is_a?(Hash).should be_true
+    end
+
+    it "shoult not contain nil as recipient" do
+      @result.values.compact.count.should be_eql(emails.count)
+    end
+
+    it "should not duplicate recipients" do
+      @result.values.uniq.count.should be_eql(emails.count)
+    end
+
+    it "should not give gift your self" do
+      @result.each do |giver, recipient|
+        giver.should_not be_eql(recipient)
+        puts giver + '=>' + recipient if giver == recipient
+      end
     end
 
     emails.each do |email|

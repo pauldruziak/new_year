@@ -24,9 +24,13 @@ class Gift
 private
 
   def who_gets_from(giver) 
-    @recipients.delete giver
-    recipient = @recipients.delete_at rand(@recipients.count)
-    @recipients << giver
+    giver = @recipients.delete giver
+    if @givers.count == 1 and @recipients.count == 2 and @recipients.include?(@givers.last)
+      recipient = @recipients.delete @givers.last
+    else
+      recipient = @recipients.delete_at rand(@recipients.count)
+    end
+    @recipients << giver if giver
     recipient
   end
 end
