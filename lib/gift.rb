@@ -23,7 +23,7 @@ class Gift
 
 private
 
-  def who_gets_from(giver) 
+  def who_gets_from(giver)
     giver = @recipients.delete giver
     if @givers.count == 1 and @recipients.count == 2 and @recipients.include?(@givers.last)
       recipient = @recipients.delete @givers.last
