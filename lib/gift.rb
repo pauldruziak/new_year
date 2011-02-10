@@ -7,30 +7,25 @@ class Gift
   end
 
   def distribute
-    @recipients = @emails.clone
-    @givers = @emails.clone
+    @recipients, @givers = @emails.clone, @emails.clone
     result = {}
-    while @givers.count != 0 do
+    until @givers.empty? do
       giver = next_giver
       result[giver] = who_gets_from giver
     end
     result
   end
 
+private
   def next_giver
     @givers.delete_at rand(@givers.count)
   end
 
-private
-
   def who_gets_from(giver)
-    giver = @recipients.delete giver
-    if @givers.count == 1 and @recipients.count == 2 and @recipients.include?(@givers.last)
-      recipient = @recipients.delete @givers.last
+    if @givers.count == 1 and @recipients.include?(@givers.last)
+      @recipients.delete @givers.last
     else
-      recipient = @recipients.delete_at rand(@recipients.count)
+      @recipients.delete((@recipients - [giver]).at rand(@recipients.count - 1))
     end
-    @recipients << giver if giver
-    recipient
   end
 end

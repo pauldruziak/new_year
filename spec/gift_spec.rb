@@ -1,8 +1,8 @@
 require "#{File.dirname(__FILE__)}/spec_helper"
- 
+
 describe "Gift" do
   emails = []
-  100.times do 
+  10.times do
     emails << Faker::Internet.email
   end
 
@@ -26,43 +26,45 @@ describe "Gift" do
     end
   end
 
-  context "result of distribute" do
-    before(:each) do 
-      @result = @gift.distribute
-    end
-
-    it "should return #{emails.count} items" do
-      @result.count.should be_eql(emails.count)
-    end
-
-    it "should return hash" do
-      @result.is_a?(Hash).should be_true
-    end
-
-    it "shoult not contain nil as recipient" do
-      @result.values.compact.count.should be_eql(emails.count)
-    end
-
-    it "should not duplicate recipients" do
-      @result.values.uniq.count.should be_eql(emails.count)
-    end
-
-    it "should not give gift your self" do
-      @result.each do |giver, recipient|
-        giver.should_not be_eql(recipient)
-        puts giver + '=>' + recipient if giver == recipient
+  10.times do
+    context "result of distribute" do
+      before(:each) do
+        @result = @gift.distribute
       end
-    end
 
-    emails.each do |email|
-      it "should contain #{email} as key" do
-        @result.has_key?(email).should be_true
+      it "should return #{emails.count} items" do
+        @result.count.should be_eql(emails.count)
       end
-    end
 
-    emails.each do |email|
-      it "should contain #{email} as value" do
-        @result.has_value?(email).should be_true
+      it "should return hash" do
+        @result.is_a?(Hash).should be_true
+      end
+
+      it "shoult not contain nil as recipient" do
+        @result.values.compact.count.should be_eql(emails.count)
+      end
+
+      it "should not duplicate recipients" do
+        @result.values.uniq.count.should be_eql(emails.count)
+      end
+
+      it "should not give gift your self" do
+        @result.each do |giver, recipient|
+          giver.should_not be_eql(recipient)
+          puts giver + '=>' + recipient if giver == recipient
+        end
+      end
+
+      emails.each do |email|
+        it "should contain #{email} as key" do
+          @result.has_key?(email).should be_true
+        end
+      end
+
+      emails.each do |email|
+        it "should contain #{email} as value" do
+          @result.has_value?(email).should be_true
+        end
       end
     end
   end
