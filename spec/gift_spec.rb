@@ -1,4 +1,5 @@
-require "#{File.dirname(__FILE__)}/spec_helper"
+require "faker"
+require "./lib/gift"
 
 describe "Gift" do
   emails = []
