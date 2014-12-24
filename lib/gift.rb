@@ -14,6 +14,8 @@ class Gift
       result[giver] = who_gets_from giver
     end
     result
+  rescue => e
+    distribute
   end
 
 private
@@ -22,10 +24,14 @@ private
   end
 
   def who_gets_from(giver)
-    if @givers.count == 1 and @recipients.include?(@givers.last)
-      @recipients.delete @givers.last
+    recipients = (@recipients - [giver]).delete_if { |recipient| giver.ignore_emails.include?(recipient.email) }
+    if recipients.count == 0
+      fail 'start again'
     else
-      @recipients.delete((@recipients - [giver]).at rand(@recipients.count - 1))
+      begin
+        recipient = recipients.at rand(recipients.count - 1)
+      end while giver.ignore_emails.include?(recipient.email)
+      @recipients.delete(recipient)
     end
   end
 end

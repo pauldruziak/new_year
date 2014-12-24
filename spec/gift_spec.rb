@@ -2,9 +2,12 @@ require "faker"
 require "./lib/gift"
 
 describe "Gift" do
+  Giver = Struct.new(:email, :name, :ignore_emails)
   emails = []
   10.times do
-    emails << Faker::Internet.email
+    ignore = emails.at(rand(emails.count))
+    ignore_email = ignore.email if ignore
+    emails << Giver.new(Faker::Internet.email, Faker::Name.name, [ignore_email])
   end
 
   before(:each) do
