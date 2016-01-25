@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Gift
 
   attr_reader :givers, :recipients, :emails
