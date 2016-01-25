@@ -1,5 +1,6 @@
 [![Build Status](https://semaphoreci.com/api/v1/projects/45ea9bb3baf707037501e9ae247b4af3820c2456/672577/shields_badge.svg)](https://semaphoreci.com/paveldruzyak/new_year)
 [![Code Climate](https://codeclimate.com/github/paveldruzyak/new_year/badges/gpa.svg)](https://codeclimate.com/github/paveldruzyak/new_year)
+[![Coverage Status](https://coveralls.io/repos/github/paveldruzyak/new_year/badge.svg?branch=master)](https://coveralls.io/github/paveldruzyak/new_year?branch=master)
 
 
 Этот скрипт помогает нам дарить тайные подарки друзьям на Новый год. Он
