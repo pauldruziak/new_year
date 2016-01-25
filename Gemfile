@@ -1,4 +1,4 @@
-source 'https://rubygems'
+source "https://rubygems.org"
 gem "pony"
 
 group :test do
