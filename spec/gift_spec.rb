@@ -18,16 +18,16 @@ describe "Gift" do
 
   context "after create" do
     it "should not be nil" do
-      @gift.should_not be_nil
+      expect(@gift).to_not be_nil
     end
 
     it "should have #{emails.count} emails" do
-      @gift.should have(emails.count).emails
+      expect(@gift.emails.count).to eq(emails.count)
     end
 
     emails.each do |email|
       it "should contain #{email}" do
-        @gift.emails.include?(email).should be_true
+        expect(@gift.emails).to include(email)
       end
     end
   end
@@ -39,37 +39,37 @@ describe "Gift" do
       end
 
       it "should return #{emails.count} items" do
-        @result.count.should be_eql(emails.count)
+        expect(@result.count).to eq(emails.count)
       end
 
       it "should return hash" do
-        @result.is_a?(Hash).should be_true
+        expect(@result).to be_kind_of(Hash)
       end
 
       it "shoult not contain nil as recipient" do
-        @result.values.compact.count.should be_eql(emails.count)
+        expect(@result.values.compact.count).to eq(emails.count)
       end
 
       it "should not duplicate recipients" do
-        @result.values.uniq.count.should be_eql(emails.count)
+        expect(@result.values.uniq.count).to eql(emails.count)
       end
 
       it "should not give gift your self" do
         @result.each do |giver, recipient|
-          giver.should_not be_eql(recipient)
+          expect(giver).to_not eq(recipient)
           puts giver + '=>' + recipient if giver == recipient
         end
       end
 
       emails.each do |email|
         it "should contain #{email} as key" do
-          @result.has_key?(email).should be_true
+          expect(@result.has_key?(email)).to be_truthy
         end
       end
 
       emails.each do |email|
         it "should contain #{email} as value" do
-          @result.has_value?(email).should be_true
+          expect(@result.has_value?(email)).to be_truthy
         end
       end
     end
