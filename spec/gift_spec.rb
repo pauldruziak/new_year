@@ -1,7 +1,8 @@
-require "faker"
-require "./lib/gift"
 require 'coveralls'
 Coveralls.wear!
+
+require "faker"
+require "./lib/gift"
 
 describe "Gift" do
   Giver = Struct.new(:email, :name, :ignore_emails)
