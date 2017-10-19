@@ -1,6 +1,3 @@
-require 'coveralls'
-Coveralls.wear!
-
 require "faker"
 require "./lib/gift"
 
