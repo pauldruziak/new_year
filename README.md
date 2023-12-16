@@ -3,32 +3,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/paveldruzyak/new_year/badge.svg?branch=master)](https://coveralls.io/github/paveldruzyak/new_year?branch=master)
 
 
-Этот скрипт помогает нам дарить тайные подарки друзьям на Новый год. Он
-случайным образом определяет кто и кому дарит подарок, и сообщает это
-через email.
 
-Установка
----------
-Для начала установи ruby и rubygem. 
-Если bundler не установлен, тогда:
     
     gem install bundler
     
-Далее, установи дополнительные библиотеки при помощи:
+
 
     bundle install
 
-Настройка
----------
-Создай в корне файл emails.txt и внеси в него все нужные адреса, каждый
-адрес с новой строчки, например:
 
     first@example.com
     second@example.com
 
-Запуск
-------
-Все готово. Теперь запусти скрипт и он разошлет всем указанным адресам
-инструкцию.
 
     ruby new_year.rb
